@@ -1,0 +1,125 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#28388F"
+  android:backgroundTint="#6D3F51B5"
+  tools:context=".Activity2">
+
+
+  <TextView
+    android:id="@+id/textView3"
+    android:layout_width="220dp"
+    android:layout_height="30dp"
+    android:layout_marginTop="84dp"
+
+    android:capitalize="characters"
+    android:fontFamily="monospace"
+    android:text="Task Description "
+    android:textSize="20sp"
+    app:autoSizeTextType="uniform"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <EditText
+    android:id="@+id/titleA"
+    android:layout_width="164dp"
+    android:layout_height="40dp"
+    android:layout_marginTop="200dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    app:layout_constraintBottom_toTopOf="@+id/desc"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.797"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.0" />
+
+  <EditText
+    android:id="@+id/desc"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginBottom="284dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    app:layout_constraintBottom_toTopOf="@+id/addTask"
+    app:layout_constraintEnd_toEndOf="@+id/titleA"
+    app:layout_constraintHorizontal_bias="0.717"
+    app:layout_constraintStart_toStartOf="@+id/titleA" />
+
+  <Button
+    android:id="@+id/addTask"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:backgroundTint="#916B6B"
+    android:text="Submit"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.566"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toBottomOf="@+id/textView3"
+    app:layout_constraintVertical_bias="0.853" />
+
+  <EditText
+    android:id="@+id/status"
+    android:layout_width="136dp"
+    android:layout_height="43dp"
+    android:layout_marginTop="40dp"
+    android:layout_marginEnd="2dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    app:layout_constraintBottom_toTopOf="@+id/addTask"
+    app:layout_constraintEnd_toEndOf="@+id/desc"
+    app:layout_constraintHorizontal_bias="0.444"
+    app:layout_constraintStart_toStartOf="@+id/desc"
+    app:layout_constraintTop_toBottomOf="@+id/desc"
+    app:layout_constraintVertical_bias="0.0" />
+
+  <TextView
+    android:id="@+id/textView7"
+    android:layout_width="62dp"
+    android:layout_height="16dp"
+    android:text="Task Title"
+    app:layout_constraintBaseline_toBaselineOf="@+id/titleA"
+    app:layout_constraintEnd_toStartOf="@+id/titleA"
+    app:layout_constraintHorizontal_bias="0.296"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+    android:id="@+id/textView8"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="Task Description"
+    app:layout_constraintBaseline_toBaselineOf="@+id/desc"
+    app:layout_constraintEnd_toStartOf="@+id/desc"
+    app:layout_constraintHorizontal_bias="0.45"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <TextView
+    android:id="@+id/textView9"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="status"
+    app:layout_constraintBaseline_toBaselineOf="@+id/status"
+    app:layout_constraintEnd_toStartOf="@+id/status"
+    app:layout_constraintStart_toStartOf="parent" />
+
+  <Spinner
+    android:id="@+id/spinner"
+    android:layout_width="149dp"
+    android:layout_height="40dp"
+    android:layout_marginStart="8dp"
+    android:layout_marginTop="8dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="8dp"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.764"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.642" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
