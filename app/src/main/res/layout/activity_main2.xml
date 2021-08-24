@@ -28,15 +28,14 @@
     android:id="@+id/titleA"
     android:layout_width="164dp"
     android:layout_height="40dp"
-    android:layout_marginTop="200dp"
     android:ems="10"
     android:inputType="textPersonName"
     app:layout_constraintBottom_toTopOf="@+id/desc"
     app:layout_constraintEnd_toEndOf="parent"
-    app:layout_constraintHorizontal_bias="0.797"
+    app:layout_constraintHorizontal_bias="0.574"
     app:layout_constraintStart_toStartOf="parent"
-    app:layout_constraintTop_toTopOf="parent"
-    app:layout_constraintVertical_bias="0.0" />
+    app:layout_constraintTop_toBottomOf="@+id/textView3"
+    app:layout_constraintVertical_bias="0.715" />
 
   <EditText
     android:id="@+id/desc"
@@ -84,9 +83,9 @@
     android:layout_height="16dp"
     android:text="Task Title"
     app:layout_constraintBaseline_toBaselineOf="@+id/titleA"
-    app:layout_constraintEnd_toStartOf="@+id/titleA"
+    app:layout_constraintEnd_toEndOf="@+id/textView8"
     app:layout_constraintHorizontal_bias="0.296"
-    app:layout_constraintStart_toStartOf="parent" />
+    app:layout_constraintStart_toStartOf="@+id/textView8" />
 
   <TextView
     android:id="@+id/textView8"

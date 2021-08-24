@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+  xmlns:app="http://schemas.android.com/apk/res-auto"
+  xmlns:tools="http://schemas.android.com/tools"
+  android:layout_width="match_parent"
+  android:layout_height="match_parent"
+  android:background="#28388F"
+  android:backgroundTint="#6D3F51B5"
+  tools:context=".Settings">
+
+  <EditText
+    android:id="@+id/usernameText"
+    android:layout_width="170dp"
+    android:layout_height="46dp"
+    android:layout_marginStart="208dp"
+    android:ems="10"
+    android:inputType="textPersonName"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent"
+    app:layout_constraintVertical_bias="0.338"
+    android:autofillHints="" />
+
+  <TextView
+    android:id="@+id/textView6"
+    android:layout_width="158dp"
+    android:layout_height="53dp"
+    android:layout_marginTop="80dp"
+    android:text="Settings Page "
+    android:textAlignment="center"
+    android:textSize="24sp"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <Button
+    android:id="@+id/usernameBtn"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:text="SAVE"
+    app:layout_constraintBottom_toBottomOf="parent"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.498"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+  <TextView
+    android:id="@+id/textView10"
+    android:layout_width="187dp"
+    android:layout_height="42dp"
+    android:text="Enter Your username "
+    android:textColor="#7C3737"
+    android:textSize="16sp"
+    app:layout_constraintBaseline_toBaselineOf="@+id/usernameText"
+    app:layout_constraintEnd_toStartOf="@+id/usernameText"
+    app:layout_constraintHorizontal_bias="0.0"
+    app:layout_constraintStart_toStartOf="parent" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
