@@ -38,17 +38,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
       recyclerView=  findViewById(R.id.recyclerView1);
       // set Amplify things here :
-      // add amplify things :
-      try {
 
-        Amplify.addPlugin(new AWSDataStorePlugin());
-        Amplify.addPlugin(new AWSApiPlugin());
-        Amplify.configure(getApplicationContext());
-
-        Log.i("Tutorial", "Initialized Amplify");
-      } catch (AmplifyException e) {
-        Log.e("Tutorial", "Could not initialize Amplify", e);
-      }
 
 
       Task t1 = Task.builder().title("Mariam").body("hello").build();
