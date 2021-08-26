@@ -116,7 +116,11 @@ On the Task detail activity, if there is a file that is an image associated with
 # My App
 
 ![img](lab33a.png)
-![img](lab33b.png)
+![img](verify.png)
+
 ![img](lab33c.png)
-![img](lab33d.png)
-![img](lab33e.png)
+![img](lab33b.png)
+
+![img](lab36c.png)
+![img](lab36b.png)
+
