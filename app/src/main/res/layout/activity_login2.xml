@@ -19,7 +19,8 @@
     android:layout_centerHorizontal="true"
     android:layout_marginTop="110dp"
     android:text="Login"
-    android:textSize="35dp" />
+    android:textColor="#3F51B5"
+    android:textSize="48sp" />
 
   <EditText
     android:id="@+id/user"
@@ -72,14 +73,20 @@
 
   <Button
     android:id="@+id/enter11"
-    android:layout_width="wrap_content"
+    android:layout_width="185dp"
     android:layout_height="wrap_content"
+    android:layout_below="@+id/password11"
+    android:layout_alignStart="@+id/password11"
+    android:layout_alignEnd="@+id/password11"
     android:layout_alignParentBottom="true"
-    android:layout_marginEnd="-5dp"
-    android:layout_marginRight="-5dp"
-    android:layout_marginBottom="60dp"
-    android:layout_toStartOf="@+id/textview"
+    android:layout_marginStart="26dp"
+    android:layout_marginTop="29dp"
+    android:layout_marginEnd="76dp"
+    android:layout_marginRight="-135dp"
+    android:layout_marginBottom="205dp"
     android:layout_toLeftOf="@+id/textview"
+    android:background="#3F51B5"
+    android:backgroundTint="#3F51B5"
     android:text="login" />
 
   <Button

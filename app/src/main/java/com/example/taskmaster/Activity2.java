@@ -1,13 +1,16 @@
 package com.example.taskmaster;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
+import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -24,7 +27,8 @@ public class Activity2 extends AppCompatActivity {
   private static final String TAG = "tag";
  private static final ArrayList<Team> teams = new ArrayList<>();
   Spinner spinner;
-
+  TextView textFile;
+  private static final int PICKFILE_RESULT_CODE = 1;
   Handler handler= new Handler(Looper.getMainLooper(), msg -> {
 
     Log.i(TAG, "onCreate: " + teams.isEmpty());
@@ -63,6 +67,19 @@ public class Activity2 extends AppCompatActivity {
     dataAdapter2.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
     spinner.setAdapter(dataAdapter2);
 
+    /**
+     * upload file  button listener
+     */
+    Button buttonPick = (Button)findViewById(R.id.pick);
+    textFile = (TextView)findViewById(R.id.textfile);
+    buttonPick.setOnClickListener(arg0 -> {
+      Intent intent = new Intent(Intent.ACTION_GET_CONTENT);
+      intent.setType("*/*");
+      startActivityForResult(intent,PICKFILE_RESULT_CODE);
+
+    });
+
+
 
     // creating the
 //    Team team = Team.builder().name("Team 1").build();
@@ -97,8 +114,6 @@ public class Activity2 extends AppCompatActivity {
           break;
       }
 
-//        Intent intent = new Intent(Activity2.this, MainActivity.class);
-//        startActivity(intent);
     });
 
   }
@@ -129,17 +144,27 @@ public class Activity2 extends AppCompatActivity {
 
   }
 
-
-
-
-  public void saveTeamsToApi(Team team){
-    Amplify.API.mutate(ModelMutation.create(team), success -> Log.i(TAG, "Saved team to API " + success.getData().getName()),
-      error -> Log.e(TAG, "Could not save team to API/dynamodb", error));
-  }
-
   @Override
-  protected void onResume() {
-    super.onResume();
+  protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
+    super.onActivityResult(requestCode, resultCode, data);
+    if (requestCode == PICKFILE_RESULT_CODE) {
+      if (resultCode == RESULT_OK) {
+        String FilePath = data.getData().getPath();
+        textFile.setText(FilePath);
+      }
+    }
   }
-}
+
+
+    public void saveTeamsToApi (Team team){
+      Amplify.API.mutate(ModelMutation.create(team), success -> Log.i(TAG, "Saved team to API " + success.getData().getName()),
+        error -> Log.e(TAG, "Could not save team to API/dynamodb", error));
+    }
+
+    @Override
+    protected void onResume () {
+      super.onResume();
+
+    }
+  }
