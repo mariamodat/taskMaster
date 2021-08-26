@@ -1,4 +1,4 @@
-# taskMaster
+# Build & Deploy TaskMaster to Android Using DynamoDB
 
 ## OverView 
 I’ll start building an Android app that will allow the user to manage the tasks , add Task title and description.
