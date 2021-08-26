@@ -57,11 +57,9 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
   }
 
   public static class MyViewHolder extends RecyclerView.ViewHolder {
-    private TextView title;
-    private TextView body;
-    private TextView state;
-    private ImageView imageView;
-    private Button deleteBtn;
+    private final TextView title;
+    private final TextView body;
+    private final TextView state;
 
 
     public MyViewHolder(@NonNull View view, OnClickListener listener) {
@@ -69,21 +67,11 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
       title = view.findViewById(R.id.title1);
       body = view.findViewById(R.id.body);
       state = view.findViewById(R.id.taskState);
-      imageView = view.findViewById(R.id.img);
-      deleteBtn = view.findViewById(R.id.delete);
+      ImageView imageView = view.findViewById(R.id.img);
+      Button deleteBtn = view.findViewById(R.id.delete);
 
-      imageView.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          listener.onTaskClicked(getBindingAdapterPosition());
-        }
-      });
-      deleteBtn.setOnClickListener(new View.OnClickListener() {
-        @Override
-        public void onClick(View v) {
-          listener.onTaskDelete(getBindingAdapterPosition());
-        }
-      });
+      imageView.setOnClickListener(v -> listener.onTaskClicked(getBindingAdapterPosition()));
+      deleteBtn.setOnClickListener(v -> listener.onTaskDelete(getBindingAdapterPosition()));
     }
   }
 }
