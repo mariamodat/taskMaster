@@ -62,6 +62,7 @@ public class RecycleAdapter extends RecyclerView.Adapter<RecycleAdapter.MyViewHo
     private final TextView state;
 
 
+
     public MyViewHolder(@NonNull View view, OnClickListener listener) {
       super(view);
       title = view.findViewById(R.id.title1);

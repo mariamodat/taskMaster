@@ -34,12 +34,15 @@
     android:layout_width="182dp"
     android:layout_height="45dp"
 
+    android:layout_marginTop="64dp"
     android:backgroundTint="#3F51B5"
     android:text="Add Task"
     android:textSize="12sp"
+    app:layout_constraintBottom_toTopOf="@+id/imageButton"
     app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintHorizontal_bias="0.497"
     app:layout_constraintStart_toStartOf="parent"
-    tools:layout_editor_absoluteY="597dp" />
+    app:layout_constraintTop_toBottomOf="@+id/recyclerView1" />
 
   <ImageView
     android:id="@+id/imageView3"
