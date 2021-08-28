@@ -28,6 +28,7 @@ import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity {
   public static final String TASK_NAME = "taskTitle";
+  public static final String TASK_FILE = "taskFile";
   private static final String TAG = "tag";
   RecycleAdapter recycleAdapter = new RecycleAdapter();
   private final ArrayList<Task> taskList = new ArrayList<>();
@@ -64,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TaskDetails.class);
 //        TextView TextTaskTitle = findViewById(R.id.taskText);
         intent.putExtra(TASK_NAME, taskList.get(position).getTitle());
+        intent.putExtra(TASK_FILE, taskList.get(position).getFileName());
         startActivity(intent);
       }
 
