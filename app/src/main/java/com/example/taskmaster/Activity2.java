@@ -1,13 +1,13 @@
 package com.example.taskmaster;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.FileUtils;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
-import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,6 +26,7 @@ import com.amplifyframework.datastore.generated.model.Team;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.InputStream;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 
@@ -36,6 +37,9 @@ public class Activity2 extends AppCompatActivity {
   private static final int REQUEST_FOR_FILE = 1;
   Spinner spinner;
   TextView textFile;
+  String fileType;
+  String fileName;
+  File uploadFile;
   private static final int PICKFILE_RESULT_CODE = 1;
   Handler handler= new Handler(Looper.getMainLooper(), msg -> {
 
@@ -108,16 +112,16 @@ public class Activity2 extends AppCompatActivity {
       Log.i(TAG, "onClick: " + teamSelected);
       switch (teamSelected) {
         case ("Team 1"):
-          Task tas1 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(0)).build();
+          Task tas1 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(0)).fileName(fileName).build();
           saveTasksToApi(tas1);
 
           break;
         case ("Team 2"):
-          Task tas2 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(1)).build();
+          Task tas2 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(1)).fileName(fileName).build();
           saveTasksToApi(tas2);
           break;
         case ("Team 3"):
-          Task tas3 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(2)).build();
+          Task tas3 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(2)).fileName(fileName).build();
           saveTasksToApi(tas3);
           break;
       }
@@ -157,10 +161,14 @@ public class Activity2 extends AppCompatActivity {
   protected void onActivityResult(int requestCode, int resultCode, Intent data) {
 
     super.onActivityResult(requestCode, resultCode, data);
+    Uri uri=data.getData();
+    fileType =getContentResolver().getType(uri);
     if (requestCode == REQUEST_FOR_FILE && resultCode == RESULT_OK) {
+      Log.i(TAG, "onActivityResult: File Type -> "+fileType);
       Log.i(TAG, "onActivityResult: returned from file explorer");
       Log.i(TAG, "onActivityResult: => " + data.getData());
-      File uploadFile = new File(getApplicationContext().getFilesDir(), "uploadFile");
+       uploadFile = new File(getApplicationContext().getFilesDir(), "uploadFile");
+      fileName=new SimpleDateFormat("yyMMddHHmmssZ").format(new Date())+"."+fileType.split("/")[1];
       try {
         InputStream inputStream = getContentResolver().openInputStream(data.getData());
         FileUtils.copy(inputStream, new FileOutputStream(uploadFile));
@@ -170,7 +178,7 @@ public class Activity2 extends AppCompatActivity {
 
 
       Amplify.Storage.uploadFile(
-        new Date().toString() + ".png",
+        fileName,
         uploadFile,
         success -> {
           Log.i(TAG, "uploadFileToS3: succeeded " + success.getKey());
