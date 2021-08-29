@@ -14,6 +14,13 @@
     "categories": {
       "auth": {
         "taskmastercb747430": {}
+      },
+      "notifications": {
+        "Pinpoint": {
+          "Name": "taskMasterrWznR-dev",
+          "Id": "236a8c8b060243d19ee5c2cb48d4d6e8",
+          "Region": "us-east-1"
+        }
       }
     }
   }
