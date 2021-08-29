@@ -40,6 +40,8 @@ public class Activity2 extends AppCompatActivity {
   String fileType;
   String fileName;
   File uploadFile;
+  EditText taskDesc;
+  String imgSrc;
   private static final int PICKFILE_RESULT_CODE = 1;
   Handler handler= new Handler(Looper.getMainLooper(), msg -> {
 
@@ -66,7 +68,20 @@ public class Activity2 extends AppCompatActivity {
     EditText desc = findViewById(R.id.desc);
 
 
+// Get intent, action and MIME type
 
+    Intent receiveFromApp = getIntent();
+    Bundle extars= receiveFromApp.getExtras();
+      String action = receiveFromApp.getAction();
+    String type = receiveFromApp.getType();
+    if (Intent.ACTION_SEND.equals(action) && type != null) {
+      if ("text/plain".equals(type)) {
+        System.out.println("extraaas>>>>" +extars );
+        handleSendText(receiveFromApp); // Handle text being sent
+      } else if (type.startsWith("image/")) {
+        handleSendImage(receiveFromApp); // Handle single image being sent
+      }
+    }
 
 
 //    Task task = Task.builder().title("meme").body("cute").state("new").team(team).build();
@@ -129,6 +144,33 @@ public class Activity2 extends AppCompatActivity {
     });
 
   }
+
+
+
+  /**
+   * handle the received files
+   * @param intent
+   */
+  void handleSendText(Intent intent) {
+    String sharedText = intent.getStringExtra(Intent.EXTRA_TEXT);
+    if (sharedText != null) {
+      // Update UI to reflect text being shared
+
+    }
+  }
+
+  /**
+   * handle shared images
+   * @param intent
+   */
+  void handleSendImage(Intent intent) {
+    Uri imageUri = (Uri) intent.getParcelableExtra(Intent.EXTRA_STREAM);
+    if (imageUri != null) {
+      // Update UI to reflect image being shared
+    }
+  }
+
+
 
 
   /**
