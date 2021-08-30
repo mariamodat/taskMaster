@@ -7,6 +7,7 @@ subscription OnCreateTask {
     body
     state
     fileName
+    location
     team {
       id
       name
@@ -35,6 +36,7 @@ subscription OnUpdateTask {
     body
     state
     fileName
+    location
     team {
       id
       name
@@ -63,6 +65,7 @@ subscription OnDeleteTask {
     body
     state
     fileName
+    location
     team {
       id
       name
@@ -95,6 +98,7 @@ subscription OnCreateTeam {
         body
         state
         fileName
+        location
         _version
         _deleted
         _lastChangedAt
@@ -123,6 +127,7 @@ subscription OnUpdateTeam {
         body
         state
         fileName
+        location
         _version
         _deleted
         _lastChangedAt
@@ -151,6 +156,7 @@ subscription OnDeleteTeam {
         body
         state
         fileName
+        location
         _version
         _deleted
         _lastChangedAt

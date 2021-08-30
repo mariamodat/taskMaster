@@ -18,6 +18,7 @@ query SyncTasks(
       body
       state
       fileName
+      location
       team {
         id
         name
@@ -45,6 +46,7 @@ query GetTask($id: ID!) {
     body
     state
     fileName
+    location
     team {
       id
       name
@@ -78,6 +80,7 @@ query ListTasks(
       body
       state
       fileName
+      location
       team {
         id
         name
@@ -138,6 +141,7 @@ query GetTeam($id: ID!) {
         body
         state
         fileName
+        location
         _version
         _deleted
         _lastChangedAt

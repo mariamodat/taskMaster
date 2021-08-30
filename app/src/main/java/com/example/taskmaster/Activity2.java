@@ -57,7 +57,8 @@ public class Activity2 extends AppCompatActivity  {
   FusedLocationProviderClient mFusedLocationClient;
   TextView latitudeTextView, longitTextView;
   int PERMISSION_ID = 44;
-
+private String longitude;
+private String latitude1;
   private static final String TAG = "tag";
  private static final ArrayList<Team> teams = new ArrayList<>();
   private static final int REQUEST_FOR_FILE = 1;
@@ -159,18 +160,21 @@ public class Activity2 extends AppCompatActivity  {
       String titleStatus = status.getText().toString();
       String teamSelected = spinner.getSelectedItem().toString();
       Log.i(TAG, "onClick: " + teamSelected);
+      ArrayList<String> locations = new ArrayList<>();
+     locations.add(longitude);
+     locations.add(latitude1);
       switch (teamSelected) {
         case ("Team 1"):
-          Task tas1 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(0)).fileName(fileName).build();
+          Task tas1 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(0)).fileName(fileName).location(locations).build();
           saveTasksToApi(tas1);
 
           break;
         case ("Team 2"):
-          Task tas2 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(1)).fileName(fileName).build();
+          Task tas2 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(1)).fileName(fileName).location(locations).build();
           saveTasksToApi(tas2);
           break;
         case ("Team 3"):
-          Task tas3 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(2)).fileName(fileName).build();
+          Task tas3 = Task.builder().title(titleName).body(titleDesc).state(titleStatus).team(teams.get(2)).fileName(fileName).location(locations).build();
           saveTasksToApi(tas3);
           break;
       }
@@ -304,6 +308,8 @@ public class Activity2 extends AppCompatActivity  {
             } else {
               latitudeTextView.setText(location.getLatitude() + "");
               longitTextView.setText(location.getLongitude() + "");
+              longitude = String.valueOf(location.getLongitude());
+              latitude1 = String.valueOf(location.getLatitude());
             }
           }
         });
@@ -366,6 +372,8 @@ public class Activity2 extends AppCompatActivity  {
       Location mLastLocation = locationResult.getLastLocation();
       latitudeTextView.setText("Latitude: " + mLastLocation.getLatitude() + "");
       longitTextView.setText("Longitude: " + mLastLocation.getLongitude() + "");
+      longitude = String.valueOf(mLastLocation.getLongitude());
+      latitude1 = String.valueOf(mLastLocation.getLatitude());
     }
   };
   // If everything is alright then
