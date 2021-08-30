@@ -27,12 +27,14 @@ public final class Task implements Model {
   public static final QueryField BODY = field("Task", "body");
   public static final QueryField STATE = field("Task", "state");
   public static final QueryField FILE_NAME = field("Task", "fileName");
+  public static final QueryField LOCATION = field("Task", "location");
   public static final QueryField TEAM = field("Task", "teamID");
   private final @ModelField(targetType="ID", isRequired = true) String id;
   private final @ModelField(targetType="String", isRequired = true) String title;
   private final @ModelField(targetType="String", isRequired = true) String body;
   private final @ModelField(targetType="String") String state;
   private final @ModelField(targetType="String") String fileName;
+  private final @ModelField(targetType="String") List<String> location;
   private final @ModelField(targetType="Team") @BelongsTo(targetName = "teamID", type = Team.class) Team team;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime createdAt;
   private @ModelField(targetType="AWSDateTime", isReadOnly = true) Temporal.DateTime updatedAt;
@@ -56,6 +58,10 @@ public final class Task implements Model {
       return fileName;
   }
   
+  public List<String> getLocation() {
+      return location;
+  }
+  
   public Team getTeam() {
       return team;
   }
@@ -68,12 +74,13 @@ public final class Task implements Model {
       return updatedAt;
   }
   
-  private Task(String id, String title, String body, String state, String fileName, Team team) {
+  private Task(String id, String title, String body, String state, String fileName, List<String> location, Team team) {
     this.id = id;
     this.title = title;
     this.body = body;
     this.state = state;
     this.fileName = fileName;
+    this.location = location;
     this.team = team;
   }
   
@@ -90,6 +97,7 @@ public final class Task implements Model {
               ObjectsCompat.equals(getBody(), task.getBody()) &&
               ObjectsCompat.equals(getState(), task.getState()) &&
               ObjectsCompat.equals(getFileName(), task.getFileName()) &&
+              ObjectsCompat.equals(getLocation(), task.getLocation()) &&
               ObjectsCompat.equals(getTeam(), task.getTeam()) &&
               ObjectsCompat.equals(getCreatedAt(), task.getCreatedAt()) &&
               ObjectsCompat.equals(getUpdatedAt(), task.getUpdatedAt());
@@ -104,6 +112,7 @@ public final class Task implements Model {
       .append(getBody())
       .append(getState())
       .append(getFileName())
+      .append(getLocation())
       .append(getTeam())
       .append(getCreatedAt())
       .append(getUpdatedAt())
@@ -120,6 +129,7 @@ public final class Task implements Model {
       .append("body=" + String.valueOf(getBody()) + ", ")
       .append("state=" + String.valueOf(getState()) + ", ")
       .append("fileName=" + String.valueOf(getFileName()) + ", ")
+      .append("location=" + String.valueOf(getLocation()) + ", ")
       .append("team=" + String.valueOf(getTeam()) + ", ")
       .append("createdAt=" + String.valueOf(getCreatedAt()) + ", ")
       .append("updatedAt=" + String.valueOf(getUpdatedAt()))
@@ -156,6 +166,7 @@ public final class Task implements Model {
       null,
       null,
       null,
+      null,
       null
     );
   }
@@ -166,6 +177,7 @@ public final class Task implements Model {
       body,
       state,
       fileName,
+      location,
       team);
   }
   public interface TitleStep {
@@ -183,6 +195,7 @@ public final class Task implements Model {
     BuildStep id(String id) throws IllegalArgumentException;
     BuildStep state(String state);
     BuildStep fileName(String fileName);
+    BuildStep location(List<String> location);
     BuildStep team(Team team);
   }
   
@@ -193,6 +206,7 @@ public final class Task implements Model {
     private String body;
     private String state;
     private String fileName;
+    private List<String> location;
     private Team team;
     @Override
      public Task build() {
@@ -204,6 +218,7 @@ public final class Task implements Model {
           body,
           state,
           fileName,
+          location,
           team);
     }
     
@@ -234,6 +249,12 @@ public final class Task implements Model {
     }
     
     @Override
+     public BuildStep location(List<String> location) {
+        this.location = location;
+        return this;
+    }
+    
+    @Override
      public BuildStep team(Team team) {
         this.team = team;
         return this;
@@ -251,12 +272,13 @@ public final class Task implements Model {
   
 
   public final class CopyOfBuilder extends Builder {
-    private CopyOfBuilder(String id, String title, String body, String state, String fileName, Team team) {
+    private CopyOfBuilder(String id, String title, String body, String state, String fileName, List<String> location, Team team) {
       super.id(id);
       super.title(title)
         .body(body)
         .state(state)
         .fileName(fileName)
+        .location(location)
         .team(team);
     }
     
@@ -278,6 +300,11 @@ public final class Task implements Model {
     @Override
      public CopyOfBuilder fileName(String fileName) {
       return (CopyOfBuilder) super.fileName(fileName);
+    }
+    
+    @Override
+     public CopyOfBuilder location(List<String> location) {
+      return (CopyOfBuilder) super.location(location);
     }
     
     @Override

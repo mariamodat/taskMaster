@@ -9,6 +9,8 @@ import android.widget.Button;
 
 public class Settings extends AppCompatActivity {
 
+    public static final String ACTION_LOCATION_SOURCE_SETTINGS = "location";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
