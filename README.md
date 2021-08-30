@@ -137,5 +137,7 @@ On the Task detail activity, if there is a file that is an image associated with
 ![img](lab36c.png)
 ![img](lab36b.png)
 ![img](details.png)
+![img](location.png)
+
 
 
