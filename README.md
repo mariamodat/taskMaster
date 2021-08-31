@@ -7,6 +7,9 @@ I’ll start building an Android app that will allow the user to manage the task
  
  
  # Daily blog / Feature tasks
+ ## **Aug 31,2021**
+   Analytics
+   Using Amplify and Pinpoint, add session analytics to your application. 
   ## **Aug 30,2021**
    Location
    When the user adds a task, their location should be retrieved and included as part of the saved Task.
