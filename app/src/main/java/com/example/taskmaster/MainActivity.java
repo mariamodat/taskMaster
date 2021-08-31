@@ -22,6 +22,7 @@ import com.amplifyframework.api.graphql.model.ModelQuery;
 import com.amplifyframework.core.Amplify;
 import com.amplifyframework.datastore.AWSDataStorePlugin;
 import com.amplifyframework.datastore.generated.model.Task;
+import com.google.firebase.analytics.FirebaseAnalytics;
 
 import java.util.ArrayList;
 import java.util.Objects;
@@ -33,6 +34,8 @@ public class MainActivity extends AppCompatActivity {
   RecycleAdapter recycleAdapter = new RecycleAdapter();
   private final ArrayList<Task> taskList = new ArrayList<>();
   private  RecyclerView recyclerView;
+  private FirebaseAnalytics mFirebaseAnalytics;
+    @SuppressLint("MissingPermission")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,7 +43,8 @@ public class MainActivity extends AppCompatActivity {
       recyclerView=  findViewById(R.id.recyclerView1);
       // set Amplify things here :
 
-
+// Obtain the FirebaseAnalytics instance.
+      mFirebaseAnalytics = FirebaseAnalytics.getInstance(this);
 
       Task t1 = Task.builder().title("Mariam").body("hello").build();
       taskList.add(t1);
@@ -65,7 +69,12 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(getApplicationContext(), TaskDetails.class);
 //        TextView TextTaskTitle = findViewById(R.id.taskText);
         intent.putExtra(TASK_NAME, taskList.get(position).getTitle());
-        intent.putExtra(TASK_FILE, taskList.get(position).getFileName());
+        if (taskList.get(position).getFileName()==null)
+        {
+          intent.putExtra(TASK_FILE,"No file uploaded");
+        }
+        else{intent.putExtra(TASK_FILE, taskList.get(position).getFileName());}
+
         startActivity(intent);
       }
 

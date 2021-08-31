@@ -43,6 +43,7 @@ public class TaskDetails extends AppCompatActivity {
 
         Amplify.Storage.downloadFile(
           fileName,
+
           new File(getApplicationContext().getFilesDir() + fileName),
           result -> {
             Log.i(TAG, "Successfully downloaded: " + result.getFile().getAbsoluteFile());
